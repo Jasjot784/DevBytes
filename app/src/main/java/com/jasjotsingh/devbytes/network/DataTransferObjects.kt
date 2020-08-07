@@ -1,5 +1,6 @@
 package com.jasjotsingh.devbytes.network
 
+import com.jasjotsingh.devbytes.database.DatabaseVideo
 import com.jasjotsingh.devbytes.domain.DevByteVideo
 import com.squareup.moshi.JsonClass
 
@@ -24,6 +25,17 @@ data class NetworkVideo(
 fun NetworkVideoContainer.asDomainModel(): List<DevByteVideo> {
     return videos.map {
         DevByteVideo(
+            title = it.title,
+            description = it.description,
+            url = it.url,
+            updated = it.updated,
+            thumbnail = it.thumbnail)
+    }
+
+}
+fun NetworkVideoContainer.asDatabaseModel(): List<DatabaseVideo> {
+    return videos.map {
+        DatabaseVideo(
             title = it.title,
             description = it.description,
             url = it.url,
